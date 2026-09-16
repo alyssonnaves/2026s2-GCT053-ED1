@@ -6,16 +6,18 @@
 void imprimir(int vetor[], int n);
 void insertion_sort(int A[], int n);
 void selection_sort(int A[], int n);
+void bubble_sort(int A[], int n);
 void preencher_aleatorio(int vetor[], int n);
 
 int main(){
-    int v[10]; 
-    preencher_aleatorio(v, 10); // 5 elementos
+    int tamanho = 10;
+    int v[tamanho]; 
+    preencher_aleatorio(v, tamanho); // 5 elementos
     printf("Desordenado\n");
-    imprimir(v, 10);
-    selection_sort(v, 10);
+    imprimir(v, tamanho);
+    bubble_sort(v, tamanho);
     printf("Ordenado\n");
-    imprimir(v, 10);
+    imprimir(v, tamanho);
     return 0;
 }
 
@@ -38,9 +40,11 @@ void insertion_sort(int A[], int n){
 }
 void selection_sort(int A[], int n){
     printf("--selection sort--\n");
+    int contador = 0;
     for (int i = 0; i <= n-2; i++){
         int m = i; // indice do menor
         for (int j = i+1; j <= n-1 ; j++){
+            contador++;
             if (A[j] < A[m]){
                 m = j;
             }
@@ -50,6 +54,26 @@ void selection_sort(int A[], int n){
         A[i] = A[m];
         A[m] = temp;
         imprimir(A, n);   
+    }
+    printf("\ncontador = %d\n", contador);
+    printf("-------------------\n");
+}
+
+void bubble_sort(int A[], int n){
+    printf("--bubble sort--\n");
+    for (int i = 0; i <= n-2; i++)
+    {
+        for (int j = 0; j <= n-2; j++)
+        {
+            if (A[j]>A[j+1]){
+                // trocar
+                int temp = A[j];
+                A[j] = A[j+1];
+                A[j+1] = temp;
+            }
+            imprimir(A, n);
+        }
+        
     }
     printf("-------------------\n");
 }
