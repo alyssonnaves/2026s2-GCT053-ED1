@@ -9,17 +9,39 @@ void selection_sort(int A[], int n);
 void bubble_sort(int A[], int n);
 void preencher_aleatorio(int vetor[], int n);
 void merge(int A[], int tmp[], int inicio, int meio, int fim);
+void merge_sort_rec(int v[], int tmp[], int inicio, int fim);
 
 int main(){
-    int tamanho = 10;
-    int v[tamanho]; 
-    preencher_aleatorio(v, tamanho); // 5 elementos
+    int tamanho = 15;
+    int v[tamanho];
+    preencher_aleatorio(v, tamanho);
+    int aux[tamanho]; // apenas merge sort
+    // 5 elementos
     printf("Desordenado\n");
     imprimir(v, tamanho);
-    bubble_sort(v, tamanho);
+    // bubble_sort(v, tamanho);
+    merge_sort_rec(v, aux, 0, 9); // inicio=0, meio = 4, fim=9
+    imprimir(v, tamanho);
     printf("Ordenado\n");
     imprimir(v, tamanho);
+
     return 0;
+}
+
+void merge_sort_rec(int v[], int tmp[], int inicio, int fim){
+    // caso base
+    printf("inicio = %d, fim = %d\n", inicio, fim);
+    if (inicio>=fim){
+        return;
+    }
+    int meio =  (inicio+fim)/2;
+    printf("---meio = %d\n", meio);
+    // lado esquerdo
+    merge_sort_rec(v, tmp, inicio, meio);
+    // lado direito
+    merge_sort_rec(v, tmp, meio+1, fim);
+    // juncao
+    merge(v, tmp, inicio, meio, fim);
 }
 
 void merge(int v[], int tmp[], int inicio, int meio, int fim){
@@ -38,6 +60,22 @@ void merge(int v[], int tmp[], int inicio, int meio, int fim){
         k++;
     }
     // parte 2 - finalizar
+    while (i<= meio){
+        tmp[k] = v[i];
+        i++;
+        k++;
+    }
+
+    while (j<=fim){
+        tmp[k] = v[j];
+        j++;
+        k++;
+    }
+
+    // copiar o conteudo de tmp[] para v[]
+    for(int t = inicio; t<=fim; t++){
+        v[t] = tmp[t];
+    }
 }
 
 
