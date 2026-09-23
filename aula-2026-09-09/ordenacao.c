@@ -8,6 +8,7 @@ void insertion_sort(int A[], int n);
 void selection_sort(int A[], int n);
 void bubble_sort(int A[], int n);
 void preencher_aleatorio(int vetor[], int n);
+void merge(int A[], int tmp[], int inicio, int meio, int fim);
 
 int main(){
     int tamanho = 10;
@@ -20,6 +21,27 @@ int main(){
     imprimir(v, tamanho);
     return 0;
 }
+
+void merge(int v[], int tmp[], int inicio, int meio, int fim){
+    int i = inicio;
+    int j = meio + 1;
+    int k = inicio;
+    // parte 1
+    while (i<=meio && j<=fim){
+        if (v[i] <= v[j]){
+            tmp[k] = v[i];
+            i++;
+        }else{
+            tmp[k] = v[j];
+            j++;
+        }
+        k++;
+    }
+    // parte 2 - finalizar
+}
+
+
+
 
 void insertion_sort(int A[], int n){
     int i;
