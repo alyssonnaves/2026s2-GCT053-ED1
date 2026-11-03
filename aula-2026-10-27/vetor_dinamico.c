@@ -33,10 +33,10 @@ void imprimir(Vetor *v){
 
 void main(){
     Vetor numeros;
-    numeros.capacidade = 5;
+    numeros.capacidade = 10;
     numeros.tamanho = 0;
     numeros.dados = calloc(numeros.capacidade, sizeof(int));
-    for (int i = 0; i < 20; i++)
+    for (int i = 0; i < 60; i++)
     {
         adicionar(&numeros, i+1);
         imprimir(&numeros);
