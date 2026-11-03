@@ -48,7 +48,7 @@ int main(){
             A[i][j] = 10*(i+1)+j;
         }        
     }
-    imprimir a matriz
+    //imprimir a matriz
     for (int i = 0; i < linhas; i++){
         // int linha = A[i];
         for (int j = 0; j < colunas; j++)
