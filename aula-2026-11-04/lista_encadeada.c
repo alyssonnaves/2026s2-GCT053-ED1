@@ -46,6 +46,27 @@ No *buscar(No *inicio, int valor){
     return NULL; // atual
 }
 
+int inserir_fim(No **inicio, int valor){
+    No *novo = criar_no(valor);
+    if(novo == NULL){
+        return 0;
+    }
+    // caso da lista vazia
+    if (*inicio == NULL){
+        // 1- chamar inserir inicio, ou
+        // 2- resolver aqui mesmo.
+        *inicio = novo;
+        return 1;
+    }
+
+    No *atual = *inicio;
+    while (atual->prox != NULL){ //atual para na ultima celula
+        atual = atual->prox;
+    }
+    atual->prox = novo;
+    return 1;
+}
+
 
 int main(){
     No *lista = NULL; // a lista esta vazia
@@ -75,6 +96,9 @@ int main(){
     }else{
         printf("elemento nao existe na lista\n");
     }
+
+    inserir_fim(&lista, 5);
+    imprimir(lista);
     return 0;
 }
 
