@@ -35,8 +35,20 @@ void imprimir(No *inicio){
     printf("\n");
 }
 
+No *buscar(No *inicio, int valor){
+    No *atual = inicio;
+    while (atual != NULL){
+        if (atual->dado == valor){
+            return atual;
+        }
+        atual = atual->prox;
+    }
+    return NULL; // atual
+}
+
+
 int main(){
-    No *lista = NULL;
+    No *lista = NULL; // a lista esta vazia
     // printf("%p",&lista);
     inserir_inicio(&lista, 10);
     imprimir(lista);
@@ -46,6 +58,23 @@ int main(){
 
     inserir_inicio(&lista, 30);
     imprimir(lista);
+
+    for (int i = 0; i < 5; i++)
+    {
+        int valor = 30 + (i+1)*10;
+        inserir_inicio(&lista, valor);
+        imprimir(lista); 
+        
+    }
+    
+    No* procurado = buscar(lista, 50);
+    if (procurado != NULL){
+        printf("elemento encontrado\n");
+        procurado->dado = procurado->dado * 2;
+        imprimir(lista);
+    }else{
+        printf("elemento nao existe na lista\n");
+    }
     return 0;
 }
 
